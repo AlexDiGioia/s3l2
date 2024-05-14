@@ -255,14 +255,14 @@
       for (let i = 0; i < 5; i++) {
         row[i] = document.createElement("tr");
 
-        // celle colonna
+        // celle riga
         column1[i] = document.createElement("td");
         column2[i] = document.createElement("td");
         column3[i] = document.createElement("td");
         column4[i] = document.createElement("td");
 
 
-        // testo celle colonne
+        // testo celle righe
         column1[i].textContent = "Immagine " + (i + 1);
         column2[i].textContent = "NomeProdotto " + (i + 1);
         column3[i].textContent = "Quantità " + (i + 1);
@@ -277,7 +277,7 @@
       }
 
       table.appendChild(tbody);
-      // Aggiungi la tabella all"elemento con id "tableArea"
+      // Aggiungi la tabella a "tableArea"
       tableArea.appendChild(table);
 
     }
