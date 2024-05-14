@@ -17,6 +17,12 @@
       margin: 0;
     }
 
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
     body div,
     footer {
       padding: 1rem;
@@ -71,7 +77,7 @@
 
   <div id="tableArea"></div>
 
-  <footer>
+  <footer onclick="revealFooterLink()">
     <h3>
       DOM Manipulation is super
       <a
@@ -80,7 +86,7 @@
   </footer>
   <script>
     /* ESERCIZIO 1
-     Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
+     Scrivi una funzione per cambiare il titolo della pagina in qualcos"altro
   */
 
     const changeTitle = function (x) {
@@ -107,7 +113,7 @@
 
     const changePcontent = function () {
       const firstP = document.querySelector("div > p");
-      firstP.innerText = "Testo modificato dall'esercizio 3";
+      firstP.innerText = "Testo modificato dallesercizio 3";
       console.log(firstP.innerText)
     }
     changePcontent();
@@ -123,7 +129,7 @@
     }*/
 
     // Seleziona tutti gli elementi <a> che hanno un attributo href
-    const links = document.querySelectorAll('a[href]');
+    const links = document.querySelectorAll("a[href]");
     //console.log(links)
     //console.log(links[0])
 
@@ -132,8 +138,8 @@
       //console.log(urls)
       urls.forEach(function (element) {
         // Controlla se il link non è nel footer
-        if (!element.closest('footer')) {
-          element.href = 'https://www.google.com';
+        if (!element.closest("footer")) {
+          element.href = "https://www.google.com";
         }
       });
     }
@@ -184,38 +190,98 @@
     const allUl = document.querySelectorAll("ul");
     //console.log(allUl)
     const paintItGreen = function (list) {
-      list.forEach((element)=>(element.style.backgroundColor="#008000"));
+      list.forEach((element) => (element.style.backgroundColor = "#008000"));
       /*list.forEach(function (element) {
-        element.style.backgroundColor = 'green';
+        element.style.backgroundColor = "green";
       });*/
     }
     paintItGreen(allUl);
 
     /* ESERCIZIO 9
-     Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
+     Scrivi una funzione che rimuova l"ultima lettera dall"h1 ogni volta che l"utente lo clicca
     */
 
     const makeItClickable = function () {
-      const clickable=document.getElementsByTagName("h1")[0]
-      const newText=clickable.innerText.slice(0,-1);
-      clickable.innerText= newText;
+      const clickable = document.getElementsByTagName("h1")[0]
+      const newText = clickable.innerText.slice(0, -1);
+      clickable.innerText = newText;
       //console.log(clickable.innerText)
-     }
+    }
 
     /* ESERCIZIO 10
-     Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
+     Crea una funzione che, al click sul footer, riveli l"URL del link interno come contenuto di un alert()
     */
 
-    const revealFooterLink = function () { 
-      
+    const revealFooterLink = function () {
+      const footer = document.getElementsByTagName("footer")[0];
+      const footerLink = document.querySelector("footer a");
+      const footerUrl = footerLink.href;
+      alert("URL del footer: " + footerLink);
+      window.open(footerUrl, "_blank")
     }
 
     /* ESERCIZIO 11
-     Crea una funzione che crei una tabella nell'elemento con id "tableArea". 
+     Crea una funzione che crei una tabella nell"elemento con id "tableArea". 
      La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
   */
 
-    const generateTable = function () { }
+    const generateTable = function () {
+      //  tableArea e parti della tabella
+      const tableArea = document.getElementById("tableArea");
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+
+      const headers = ["Immagine", "Nome Prodotto", "Quantità", "Prezzo"];
+      headers.forEach(function (headerText) {
+        const th = document.createElement("th");
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+      });
+
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      // vettori percolonne
+      const row = [];
+      const column1 = [];
+      const column2 = [];
+      const column3 = [];
+      const column4 = [];
+      const column5 = [];
+
+      for (let i = 0; i < 5; i++) {
+        row[i] = document.createElement("tr");
+
+        // celle colonna
+        column1[i] = document.createElement("td");
+        column2[i] = document.createElement("td");
+        column3[i] = document.createElement("td");
+        column4[i] = document.createElement("td");
+
+
+        // testo celle colonne
+        column1[i].textContent = "Immagine " + (i + 1);
+        column2[i].textContent = "NomeProdotto " + (i + 1);
+        column3[i].textContent = "Quantità " + (i + 1);
+        column4[i].textContent = "Prezzo " + (i + 1);
+
+        row[i].appendChild(column1[i]);
+        row[i].appendChild(column2[i]);
+        row[i].appendChild(column3[i]);
+        row[i].appendChild(column4[i]);
+
+        tbody.appendChild(row[i]);
+      }
+
+      table.appendChild(tbody);
+      // Aggiungi la tabella all"elemento con id "tableArea"
+      tableArea.appendChild(table);
+
+    }
+    generateTable();
 
     /* ESERCIZIO 12
      Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
