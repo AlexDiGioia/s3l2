@@ -124,35 +124,48 @@
 
     // Seleziona tutti gli elementi <a> che hanno un attributo href
     const links = document.querySelectorAll('a[href]');
-    console.log(links)
-    console.log(links[0])
+    //console.log(links)
+    //console.log(links[0])
 
     const changeUrls = function (urls) {
       // Itera su ciascun link e modifica la proprietà href
-      console.log(urls)
+      //console.log(urls)
       urls.forEach(function (element) {
         // Controlla se il link non è nel footer
         if (!element.closest('footer')) {
           element.href = 'https://www.google.com';
         }
       });
-
     }
-
-    changeUrls(links);
+    //changeUrls(links);
     console.log(links)
 
     /* ESERCIZIO 5
      Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
   */
 
-    const addToTheSecond = function () { }
+    const secondUList = document.getElementsByTagName("ul");
+
+    const addToTheSecond = function (list) {
+      const second = list[1];
+      const newLi = document.createElement("li");
+      newLi.innerText = "Esercizio 5"
+      second.appendChild(newLi);
+    }
+
+    addToTheSecond(secondUList);
 
     /* ESERCIZIO 6
      Scrivi una funzione che aggiunga un paragrafo al primo div
   */
 
-    const addParagraph = function () { }
+    const firstDiv = document.getElementsByTagName("div")[0];
+    const addParagraph = function (div) {
+      const newPar = document.createElement("p");
+      newPar.innerText = "Esercizio 6";
+      div.appendChild(newPar);
+    }
+    addParagraph(firstDiv);
 
     /* ESERCIZIO 7
      Scrivi una funzione che faccia scomparire la prima lista non ordinata
